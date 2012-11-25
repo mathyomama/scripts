@@ -28,8 +28,8 @@ while i < len(ngonalList[0]):
 
 def cyclic(remainingOrders, answer):
 	"recursive function for finding a cycle, in this case for n-gonal numbers"
-	if len(answer) == 6:
-		return answer
+	if len(answer) == 6 and answer[-1]%100 == answer[0]//100:
+		return
 	test = None
 	if len(answer) > 0:
 		test = answer[-1]%100
@@ -38,12 +38,11 @@ def cyclic(remainingOrders, answer):
 		currentOrder = remainingOrders.pop(i)
 		currentIndex = 0
 		while currentIndex < len(ngonalList[currentOrder]):
-			if currentOrder == 0:
+			if len(answer) == 0 or test == ngonalList[currentOrder][currentIndex]//100:
 				answer.append(ngonalList[currentOrder][currentIndex])
 				cyclic(remainingOrders, answer)
-			elif test == ngonalList[currentOrder][currentIndex]//100:
-				answer.append(ngonalList[currentOrder][currentIndex])
-				cyclic(remainingOrders, answer)
+				if len(answer) == 6 and answer[-1]%100 == answer[0]//100:
+					return
 			currentIndex += 1
 		remainingOrders.insert(i, currentOrder)
 		i += 1
@@ -51,4 +50,4 @@ def cyclic(remainingOrders, answer):
 
 remainingOrders, answer = list(range(6)), []
 cyclic(remainingOrders, answer)
-print(answer)
+print(answer, sum(answer))
