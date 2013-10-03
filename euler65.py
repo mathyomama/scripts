@@ -15,7 +15,7 @@ def frac_comp_of_e(n):
 for i in range(1, 11):
 	print(frac_comp_of_e(i), (2*(i//3 + 1))**((i%3)%2))
 
-numerator = frac_comp_of_e(100)[0]
+numerator = frac_comp_of_100(e)[0]
 sum = 0
 while numerator > 0:
 	sum += numerator%10

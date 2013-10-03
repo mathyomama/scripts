@@ -4,6 +4,7 @@ for line in foo:
 	aList = line.split()
 	for number in aList:
 		listOfPrimes.append(int(number))
+foo.close()
 
 
 def factorization(n):
@@ -48,3 +49,16 @@ def totient(tup):
         tot *= i[0]**(i[1] - 1)*(i[0] - 1)
         ratio /= (1 - 1/float(i[0]))
     return (product, tot, ratio)
+
+def binary_search(aList, n):
+	low, high = 0, len(aList) - 1
+	while True:
+		if high <= low:
+			return -1
+		mid = (low + high)/2
+		if aList[mid] > n:
+			high = mid - 1
+		elif aList[mid] < n:
+			low = mid + 1
+		else:
+			return mid

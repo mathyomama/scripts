@@ -14,4 +14,14 @@ def summation(n):
 		degree = sum(master[0])
 	return master
 
-print(len(summation(100)))
+
+coins = range(1, 101)
+target = 100
+dp = [0]*(target + 1)
+dp[0] = 1
+for c in coins:
+	for j in range(len(dp)):
+		if j + c < len(dp):
+			dp[j + c] += dp[j]
+
+print dp[target]
