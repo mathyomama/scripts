@@ -1,4 +1,4 @@
-foo = open("/home/mathyomama/Stuff/primes1.txt")
+foo = open("./primes1.txt")
 listOfPrimes = []
 for line in foo:
 	aList = line.split()
