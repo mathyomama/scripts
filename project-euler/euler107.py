@@ -12,11 +12,10 @@ def modifiedInt(str):
 
 def findMinimalConnectedSum(network):
 	length = len(network)
-	touchedNetwork = [[0]*length]*length
+	touchedNetwork = [[0 for j in xrange(length)] for i in xrange(length)]
 	touchedVertices = [0]*length
 	touchedVertices[0] = 1
 	touchCount = sum(touchedVertices)
-	minSum = 0
 	while touchCount < length:
 		minVal, minIndex, minRow = 1000, length, length
 		badVal, badIndex = 1000, length
@@ -34,18 +33,18 @@ def main():
 	foo = open("network.txt")
 	network = [map(modifiedInt, line.split(",")) for line in foo]
 	foo.close()
-	originalSum = sum(map(sum, network))
 	touchedNetwork = findMinimalConnectedSum(network)
-	networkFile = open("networkFile.csv", "w")
-	touchedNetworkFile = open("touchedNetwork.csv", "w")
-	for row, touchedRow in zip(network, touchedNetwork):
-		for element, touchedElement in zip(row, touchedRow):
-			networkFile.write(str(element) + ";")
-			touchedNetworkFile.write(str(touchedElement) + ";")
-		networkFile.write("\n")
-		touchedNetworkFile.write("\n")
-	networkFile.close()
-	touchedNetworkFile.close()
+#	networkFile = open("networkFile.csv", "w")
+#	touchedNetworkFile = open("touchedNetwork.csv", "w")
+#	for row, touchedRow in zip(network, touchedNetwork):
+#		for element, touchedElement in zip(row, touchedRow):
+#			networkFile.write(str(element) + ";")
+#			touchedNetworkFile.write(str(touchedElement) + ";")
+#		networkFile.write("\n")
+#		touchedNetworkFile.write("\n")
+#	networkFile.close()
+#	touchedNetworkFile.close()
+	print (sum(map(sum, network)) - sum(map(sum, touchedNetwork)))/2
 
 if __name__ == "__main__":
 	sys.exit(main())
